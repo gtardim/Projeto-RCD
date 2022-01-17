@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewData["Title"] = "RelatorioProcessos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="page-inner">
+        <div class="col-md-8 ml-auto mr-auto">
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="row">
+
+                            <div class="col-sm-3">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h4>Relatorio - Processos</h4>
+                            </div>
+
+                            <div class="col-sm-3">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-sm-11 ml-auto mr-auto">
+                                <div class="form-group">
+                                    <label for="txtCliente">Cliente <span class="required-label">*</span></label>
+                                    <select class="form-control  basic" id="txtCliente">
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-11 ml-auto mr-auto">
+                                <div class="form-group">
+                                    <label for="txtStatus">Status <span class="required-label">*</span></label>
+                                    <select class="form-control  basic" id="txtStatus">
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5 ml-auto mr-auto">
+                                <div class="form-group mb-0">
+                                    <label for="txtDataInicial">Data Inicial<span class="required-label">*</span></label>
+                                    <input id="txtDataInicial" class="form-control flatpickr flatpickr-input" type="date" placeholder="Data Inicial">
+                                </div>
+                            </div>
+                            <div class="col-sm-5 ml-auto mr-auto">
+                                <div class="form-group mb-0">
+                                    <label for="txtDataFinal">Data Final<span class="required-label">*</span></label>
+                                    <input id="txtDataFinal" class="form-control flatpickr flatpickr-input" type="date" placeholder="Data Final">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-primary  mb-4 mr-2 btn-lg" onclick="preview()">Emitir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+
+
+
+    <script src="~/plugins/MomentJs.js"></script>
+    <script src="~/plugins/jquery.mask.js"></script>
+    <script src="~/plugins/flatpickr/flatpickr.js"></script>
+    <script>
+        $("#txtDataInicial").flatpickr(
+            {
+                dateFormat: "d/m/Y"
+            });
+    </script>
+    <script>
+        $("#txtDataFinal").flatpickr(
+            {
+                dateFormat: "d/m/Y"
+            });
+    </script>
+    <script src="~/js/view/Processo/Relatorio.js"></script>
+
+}

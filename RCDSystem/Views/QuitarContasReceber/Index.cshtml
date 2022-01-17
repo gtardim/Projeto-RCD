@@ -1,0 +1,301 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="page-inner">
+        <div class="col-md-8 ml-auto mr-auto">
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="row">
+
+                            <div class="col-sm-3">
+                            </div>
+
+                            <div class="col-sm-4">
+                                <h4>Selecione o tipo de conta</h4>
+                            </div>
+
+                            <div class="col-sm-1">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-2">
+                                <h4>Periodo:</h4>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group mb-0">
+                                    <input id="txtPeridoIni" class="flatpickr-input" type="date" placeholder="Inicio">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group mb-0">
+                                    <input id="txtPeridoFim" class="flatpickr-input" type="date" placeholder="Fim">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="obterAbertas()">
+                                    <i class="fa fa-plus"></i>
+                                    A Baixar
+                                </button>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="obterBaixadas()">
+                                    <i class="fa fa-plus"></i>
+                                    Baixadas
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Modal Receber -->
+                        <div class="modal fade" id="pagarRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Contas
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Receber
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtEditCodigo">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtEditCodigo" placeholder="Codigo da Despesa" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditDescricao">Descricao <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditDescricao" name="txtEditDescricao" placeholder="Descrição" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtCliente">Cliente <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtCliente" disabled>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtEditDataGeracao">Data do Recebimento <span class="required-label">*</span></label>
+                                                        <input id="txtEditDataGeracao" class="form-control flatpickr flatpickr-input" type="date" placeholder="Data Vencimento" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <input type="text"  hidden class="form-control" id="txtEditTipo" name="txtEditTipo" placeholder="tipo" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="txtEditValor">Valor <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditValor" name="txtEditValor" placeholder="Valor da Despesa" disabled>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="txtValorAReceber">Valor Parcial Recebido<span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtValorAReceber" name="txtValorAReceber" placeholder="Valor a ser Pago">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtNovaDataRecebimento">Data do Novo Recebimento <span class="required-label">*</span></label>
+                                                        <input id="txtNovaDataRecebimento" class="form-control flatpickr flatpickr-input active" type="date" placeholder="Nova Data Vencimento">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-sm-3">
+
+                                                    <label for="txtValorRecebido"><span class="required-label"> * </span></label>
+                                                    <button type="button" id="btnPagarParcial" class="btn btn-primary" onclick="receberParcial()">Receber Valor Parcial</button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="receberTotal()">Receber Total</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <!-- Modal Estornar -->
+                        <div class="modal fade" id="estornarRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Estornar
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Conta
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtCodigo">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtCodigo" placeholder="Codigo da Despesa" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtDescricao">Descricao <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtDescricao" name="txtDescricao" placeholder="Descrição" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtEditCliente">Cliente <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtEditCliente" disabled>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtDataGeracao">Data do Recebimento <span class="required-label">*</span></label>
+                                                        <input id="txtDataGeracao" class="form-control flatpickr flatpickr-input" type="date" placeholder="Data Vencimento" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <input type="text" hidden class="form-control" id="txtEstTipo" name="txtEstTipo" placeholder="tipo" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="txtValor">Valor <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtValor" name="txtValor" placeholder="Valor da Despesa" disabled>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="estornar()">Estornar Pagamento</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <div class="table-responsive">
+                            <table id="tableRecebimento" class="display table table-striped table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 15%">Descrição</th>
+                                        <th style="width: 25%">Cliente</th>
+                                        <th style="width: 10%">Data Geração</th>
+                                        <th style="width: 10%">Valor</th>
+                                        <th style="width: 10%">Valor Pago</th>
+                                        <th style="width: 10%">Data Pagamento</th>
+                                        <th style="width: 20%">Ações</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section script{
+
+
+
+
+        <script src="~/plugins/jquery.mask.js"></script>
+        <script src="~/plugins/flatpickr/flatpickr.js"></script>
+        <script>
+            $("#txtEditDataVenc").flatpickr(
+                {
+                    dateFormat: "dd/mm/YYYY"
+                });
+        </script>
+        <script>
+            $("#txtEstornarDataVenc").flatpickr(
+                {
+                    dateFormat: "dd/mm/YYYY"
+                });
+        </script>
+        <script src="~/js/view/QuitarContasReceber/Cadastro.js"></script>
+
+    }
+

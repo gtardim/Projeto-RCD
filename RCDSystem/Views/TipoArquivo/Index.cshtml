@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="page-inner">
+        <div class="col-md-8 ml-auto mr-auto">
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header">
+
+
+
+                        <div class="d-flex align-items-center">
+                            <h4>Tipo de Arquivo</h4>
+                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="showNovoModal()">
+                                <i class="fa fa-plus"></i>
+                                Novo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Modal Adicionar Registro -->
+                        <div class="modal fade" id="addRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Novo
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Tipo de Arquivo
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtNovoDescricao">Descrição do Tipo Arquivo <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtNovoDescricao" name="txtNovoDescricao" placeholder="Descrição do Tipo Arquivo" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="gravar()">Adicionar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <!-- Modal Alterar Registro -->
+                        <div class="modal fade" id="editRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Nova
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Descrição
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_edit">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtEditCodigo">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtEditCodigo" placeholder="Codigo Tipo Cliente" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditDescricao">Descrição do Tipo de Arquivo</label>
+                                                        <input type="text" class="form-control" id="txtEditDescricao" name="txtEditDescricao" placeholder="Descrição Tipo Cliente">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="alterar();">Alterar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <div class="table-responsive">
+                            <table id="tableTipoArquivo" class="display table table-striped table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%">Codigo</th>
+                                        <th style="width: 65%">Descrição</th>
+                                        <th style="width: 25%">Ações</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section script{
+
+
+
+
+    <script src="~/js/view/TipoArquivo/Cadastro.js"></script>
+
+    <script>
+
+    </script>
+
+}
+

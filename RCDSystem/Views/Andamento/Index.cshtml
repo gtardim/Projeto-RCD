@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="page-inner">
+        <div class="col-md-8 ml-auto mr-auto">
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="row">
+
+                            <div class="col-sm-2">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h4>Selecione Processo /Protocolo</h4>
+                            </div>
+
+
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="ObterProcessos()">
+                                    <i class="fa fa-plus"></i>
+                                    Processos
+                                </button>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="obterProtocolos()">
+                                    <i class="fa fa-plus"></i>
+                                    Protocolos
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Modal Alterar Status Processo -->
+                        <div class="modal fade" id="AndamentoModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Andamento
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtCodigo">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtCodigo" placeholder="Codigo" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtDescricao">Descricao <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtDescricao" name="txtDescricao" placeholder="Descrição" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtCliente">Cliente <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtCliente" disabled>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label for="txtStatus">Status Atual<span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtStatus" disabled>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                </div>
+
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label for="txtNovoStatus">Novo Status <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtNovoStatus">
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="alterarProcesso()">Alterar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <!-- Modal Alterar Status Protocolo -->
+                        <div class="modal fade" id="Andamento2Modal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Andamento
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtCodigo2">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtCodigo2" placeholder="Codigo" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtDescricao2">Descricao <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtDescricao2" name="txtDescricao2" placeholder="Descrição" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtCliente2">Cliente <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtCliente2" disabled>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label for="txtStatus2">Status Atual<span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtStatus2" disabled>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                </div>
+
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label for="txtNovoStatus2">Novo Status <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtNovoStatus2">
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="alterarProtocolo()">Alterar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+
+                        <div class="table-responsive">
+                            <table id="tablePP" class="display table table-striped table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 45%">Descrição</th>
+                                        <th style="width: 25%">Cliente</th>
+                                        <th style="width: 20%">Status</th>
+                                        <th style="width: 10%">Ações</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section script{
+
+
+
+
+        <script src="~/plugins/jquery.mask.js"></script>
+        <script src="~/plugins/flatpickr/flatpickr.js"></script>
+        <script>
+            $("#txtEditDataVenc").flatpickr(
+                {
+                    dateFormat: "dd/mm/YYYY"
+                });
+        </script>
+        <script>
+            $("#txtEstornarDataVenc").flatpickr(
+                {
+                    dateFormat: "dd/mm/YYYY"
+                });
+        </script>
+        <script src="~/js/view/Andamento/Cadastro.js"></script>
+
+    }
+

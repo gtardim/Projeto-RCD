@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content">
+    <div class="page-inner">
+        <div class="col-md-8 ml-auto mr-auto">
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header">
+
+
+
+                        <div class="d-flex align-items-center">
+                            <h4>Registrar Arquivo</h4>
+                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="showNovoModal()">
+                                <i class="fa fa-plus"></i>
+                                Novo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Modal Adicionar Registro -->
+                        <div class="modal fade" id="addRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Novos
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Arquivos
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtCliente">Cliente <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtCliente">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtDescricao">Descrição do Arquivo <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtDescricao" name="txtDescricao" placeholder="Descrição do Arquivo" required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group">
+                                                            <label for="txtTipoArq">Tipo de Arquivo <span class="required-label">*</span></label>
+                                                            <select class="form-control  basic" id="txtTipoArq">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="custom-file-container" data-upload-id="mySecondImage">
+                                                            <label>Upload (Allow Multiple) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                                            <label class="custom-file-container__custom-file">
+                                                                <input type="file" id="arquivoGeral" class="custom-file-container__custom-file__custom-file-input" multiple>
+                                                                <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                                <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                            </label>
+                                                            <div class="custom-file-container__image-preview"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="gravar()">Adicionar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <!-- Modal Alterar Registro -->
+                        <div class="modal fade" id="editRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Alterar
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Arquivo
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtEditCodigo">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtEditCodigo" placeholder="Codigo do Arquivo" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditCliente">Cliente <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtEditCliente">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditDescricao">Descrição do Arquivo <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditDescricao" name="txtEditDescricao" placeholder="Descrição do Arquivo" required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditTipoArq">Tipo de Arquivo <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtEditTipoArq">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditNome">Arquivo Carregado<span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditNome" name="txtEditNome" placeholder="Descrição do Arquivo" disabled>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <label for="txtNovoArq">Carregar Novo Arquivo<span class="required-label">*</span></label>
+                                                    <div class="custom-file-container" data-upload-id="mySecondImageEdit">
+                                                        <label class="custom-file-container__custom-file">
+                                                            <input type="file" id="arquivoGeralEdit" class="custom-file-container__custom-file__custom-file-input" multiple>
+                                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                        </label>
+                                                        <div class="custom-file-container__image-preview"></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                           
+
+                                            <div class="modal-footer no-bd">
+                                                <button type="button" id="addNovo" class="btn btn-primary" onclick="alterar()">Adicionar</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <div class="table-responsive">
+                            <table id="tableArquivo" class="display table table-striped table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2%">Codigo</th>
+                                        <th style="width: 10%">Cliente</th>
+                                        <th style="width: 25%">Descrição</th>
+                                        <th style="width: 20%">Categoria</th>
+                                        <th style="width: 10%">Nome do Arquivo</th>
+                                        <th style="width: 33%">Ações</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+
+
+
+    <script src="~/js/view/Arquivo/Cadastro.js"></script>
+    <script src="~/plugins/jquery.mask.js"></script>
+    <script src="~/plugins/file-upload/file-upload-with-preview.min.js"></script>
+
+
+    <script>
+
+    </script>
+
+}

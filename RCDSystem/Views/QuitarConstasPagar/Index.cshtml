@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="page-inner">
+        <div class="col-md-8 ml-auto mr-auto">
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header">
+
+
+
+                        <div class="d-flex align-items-center">
+                            <h4>Cliente</h4>
+                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" onclick="showNovoModal()">
+                                <i class="fa fa-plus"></i>
+                                Novo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Modal Adicionar Registro -->
+                        <div class="modal fade" id="addRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Quitar
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Pagamentos
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtDescricao">Descricao <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtDescricao" name="txtDescricao" placeholder="Descrição" required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtTipoDes">Tipo de Despesa <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtTipoDes">
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="txtValor">Valor <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtValor" name="txtValor" placeholder="Valor da Despesa" required>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtDataVenc">Data de Vencimento <span class="required-label">*</span></label>
+                                                        <input id="txtDataVenc" class="form-control flatpickr flatpickr-input active" type="date" placeholder="Data Vencimento">
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtDetalhe">Detalhe<span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtDetalhe" name="txtDetalhe" placeholder="Detalhes da Conta" required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="gravar()">Adicionar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <!-- Modal Alterar Registro -->
+                        <div class="modal fade" id="editRowModal" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header no-bd">
+                                        <h5 class="modal-title">
+                                            <span class="fw-mediumbold">
+                                                Alterar
+                                            </span>
+                                            <span class="fw-mediumbold">
+                                                Conta
+                                            </span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form_novo">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label for="txtEditCodigo">Codigo</label>
+                                                        <input type="text" class="form-control" id="txtEditCodigo" placeholder="Codigo da Despesa" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtEditDescricao">Descricao <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditDescricao" name="txtEditDescricao" placeholder="Descrição" required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label for="txtEditTipoDes">Tipo de Despesa <span class="required-label">*</span></label>
+                                                        <select class="form-control  basic" id="txtEditTipoDes">
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="txtEditValor">Valor <span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditValor" name="txtEditValor" placeholder="Valor da Despesa" required>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group mb-0">
+                                                        <label for="txtEditDataVenc">Data de Vencimento <span class="required-label">*</span></label>
+                                                        <input id="txtEditDataVenc" class="form-control flatpickr flatpickr-input active" type="date" placeholder="Data Vencimento">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="txtEditDetalhe">Detalhe<span class="required-label">*</span></label>
+                                                        <input type="text" class="form-control" id="txtEditDetalhe" name="txtEditDetalhe" placeholder="Detalhes da Conta" required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="modal-footer no-bd">
+                                        <button type="button" id="addNovo" class="btn btn-primary" onclick="alterar()">Adicionar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Modal-->
+                        <div class="table-responsive">
+                            <table id="tableDespesa" class="display table table-striped table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%">Codigo</th>
+                                        <th style="width: 60%">Descrição</th>
+                                        <th style="width: 10%">Valor</th>
+                                        <th style="width: 20%">Ações</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+
+
+
+    
+    <script src="~/plugins/jquery.mask.js"></script>
+}
+
